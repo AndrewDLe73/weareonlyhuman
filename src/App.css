@@ -74,6 +74,10 @@
 
 .back {
   background: rgb(238, 231, 231);
-  color: black;
-  transform: rotateY(180deg);
+    color: black;
+      transform: rotateY(180deg);
+}
+.back .wildcard {
+  background:yellow;
+
 }
