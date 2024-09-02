@@ -4,10 +4,16 @@ import { MantineProvider, Button, Container, Checkbox, Stack, MultiSelect, Accor
 import { FriendshipEdition, BreakupEdition, HonestDatingEdition, CouplesEdition , CustomEdition} from './assets/Cards'
 import { useViewportSize, useHotkeys } from '@mantine/hooks';
 import moment from 'moment/moment';
+import { useSwipeable } from 'react-swipeable';
 
 let totalDeck = [...FriendshipEdition, ...BreakupEdition, ...HonestDatingEdition, ...CouplesEdition, ...CustomEdition]
 
 function App() {
+  const handlers = useSwipeable({
+    onSwipedDown: (eventData) => console.log("User Swiped!", eventData),
+    ...config,
+  });
+
   const [password, setPassword] = useState("")
   const [loggedIn, setLoggedIn] = useState(false)
   const [currentDeck, setCurrentDeck] = useState([])
@@ -275,7 +281,7 @@ function App() {
       withNormalizeCSS
       theme={{ colorScheme: 'dark' }}>
 
-      <div className="App">
+      <div className="App" {...handlers}>
         {!loggedIn && <TextInput placeholder='we are only human'
           value={password} onChange={(event) => { setPassword(event.target.value) }} ></TextInput>}
 
